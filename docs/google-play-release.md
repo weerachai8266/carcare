@@ -62,7 +62,7 @@ flutter test
 flutter build appbundle --release \
   --dart-define=CARCARE_API=https://your-api-domain.example \
   --dart-define=GOOGLE_SERVER_CLIENT_ID=your-web-client-id.apps.googleusercontent.com \
-  --dart-define=APP_VERSION=1.0.3+4
+  --dart-define=APP_VERSION=1.1.0+5
 ```
 
 ไฟล์ที่ใช้ upload จะอยู่ที่:
@@ -73,15 +73,28 @@ build/app/outputs/bundle/release/app-release.aab
 
 ## 4. Checklist ก่อนส่ง Play Console
 
-- `pubspec.yaml` ใช้ `version: 1.0.3+4` หรือเลขใหม่กว่า และ `versionCode` ต้องมากกว่ารอบที่เคยอัปโหลด
+- `pubspec.yaml` ใช้ `version: 1.1.0+5` หรือเลขใหม่กว่า และ `versionCode` ต้องมากกว่ารอบที่เคยอัปโหลด
 - `android/app/build.gradle.kts` target SDK เป็น API 36
 - ใช้ release keystore จริง ไม่ใช่ debug key
 - ตั้งค่า Google OAuth client ID สำหรับ package `com.carcare.carcare` และ SHA-1 ของ upload/release key
+- สร้าง one-time products สำหรับ Donate ใน Play Console ให้ครบ: `carcare_support_small`, `carcare_support_medium`, `carcare_support_large`
 - ตั้งค่า `CARCARE_API` เป็นโดเมน backend production
 - สร้าง Privacy Policy และกรอก Data safety ให้ตรงกับข้อมูลที่แอพส่งขึ้นเซิร์ฟเวอร์
 - เตรียม app icon 512x512, feature graphic 1024x500, screenshots, short description และ full description
 
-## 5. ตรวจ signing ของ bundle
+## 5. ตั้งค่า Donate ใน Play Console
+
+สร้าง one-time products แบบ consumable ใน Play Console:
+
+| Product ID | ตัวอย่างชื่อสินค้า |
+|---|---|
+| `carcare_support_small` | สนับสนุน CarCare เล็ก |
+| `carcare_support_medium` | สนับสนุน CarCare กลาง |
+| `carcare_support_large` | สนับสนุน CarCare ใหญ่ |
+
+ข้อความในแอพบอกชัดว่าการสนับสนุนเป็นทางเลือกและไม่ปลดล็อกฟีเจอร์พิเศษ เพื่อให้ไม่กลายเป็นการขายความสามารถแยกต่างหาก
+
+## 6. ตรวจ signing ของ bundle
 
 ```bash
 keytool -list -v -keystore android/app/upload-keystore.jks -alias upload

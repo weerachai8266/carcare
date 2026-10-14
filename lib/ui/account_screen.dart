@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../services/api_client.dart';
 import '../services/app_services.dart';
 import '../services/sync_service.dart';
+import 'donate_screen.dart';
 import 'feedback_screen.dart';
 import 'format.dart';
 
@@ -56,32 +57,36 @@ class _AccountScreenState extends State<AccountScreen> {
   }
 
   Future<void> _signIn() => _run(() async {
-        final account = await _services.auth.signIn(deviceName: 'มือถือ');
-        if (account == null) return null; // ผู้ใช้กดยกเลิกเอง
-        final result = await _services.sync.sync();
-        return 'เข้าสู่ระบบเป็น ${account.email}\n${result.summary}';
-      });
+    final account = await _services.auth.signIn(deviceName: 'มือถือ');
+    if (account == null) return null; // ผู้ใช้กดยกเลิกเอง
+    final result = await _services.sync.sync();
+    return 'เข้าสู่ระบบเป็น ${account.email}\n${result.summary}';
+  });
 
   Future<void> _syncNow() => _run(() async {
-        final SyncResult result = await _services.sync.sync();
-        return result.summary;
-      });
+    final SyncResult result = await _services.sync.sync();
+    return result.summary;
+  });
 
   Future<void> _resyncAll() => _run(() async {
-        final result = await _services.sync.resyncEverything();
-        return 'ส่งขึ้นใหม่ทั้งหมดแล้ว\n${result.summary}';
-      });
+    final result = await _services.sync.resyncEverything();
+    return 'ส่งขึ้นใหม่ทั้งหมดแล้ว\n${result.summary}';
+  });
 
-  Future<void> _openFeedback() => Navigator.of(context).push(
-        MaterialPageRoute(builder: (_) => const FeedbackScreen()),
-      );
+  Future<void> _openFeedback() => Navigator.of(
+    context,
+  ).push(MaterialPageRoute(builder: (_) => const FeedbackScreen()));
+
+  Future<void> _openDonate() => Navigator.of(
+    context,
+  ).push(MaterialPageRoute(builder: (_) => const DonateScreen()));
 
   Future<void> _signOut() => _run(() async {
-        await _services.auth.signOut();
-        // ล้างเคอร์เซอร์ด้วย ไม่งั้นบัญชีถัดไปจะดึงข้อมูลไม่ครบเพราะคิดว่าซิงก์ไปแล้ว
-        await _services.sync.resetCursor();
-        return 'ออกจากระบบแล้ว';
-      });
+    await _services.auth.signOut();
+    // ล้างเคอร์เซอร์ด้วย ไม่งั้นบัญชีถัดไปจะดึงข้อมูลไม่ครบเพราะคิดว่าซิงก์ไปแล้ว
+    await _services.sync.resetCursor();
+    return 'ออกจากระบบแล้ว';
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -102,12 +107,14 @@ class _AccountScreenState extends State<AccountScreen> {
                 children: [
                   CircleAvatar(
                     radius: 24,
-                    backgroundImage: account?.pictureUrl == null
-                        ? null
-                        : NetworkImage(account!.pictureUrl!),
-                    child: account?.pictureUrl == null
-                        ? const Icon(Icons.person_outline)
-                        : null,
+                    backgroundImage:
+                        account?.pictureUrl == null
+                            ? null
+                            : NetworkImage(account!.pictureUrl!),
+                    child:
+                        account?.pictureUrl == null
+                            ? const Icon(Icons.person_outline)
+                            : null,
                   ),
                   const SizedBox(width: 16),
                   Expanded(
@@ -115,7 +122,9 @@ class _AccountScreenState extends State<AccountScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          account?.name ?? account?.email ?? 'ยังไม่ได้เข้าสู่ระบบ',
+                          account?.name ??
+                              account?.email ??
+                              'ยังไม่ได้เข้าสู่ระบบ',
                           style: theme.textTheme.titleMedium,
                         ),
                         if (account != null && account.name != null)
@@ -198,6 +207,12 @@ class _AccountScreenState extends State<AccountScreen> {
             onPressed: _busy ? null : _openFeedback,
             icon: const Icon(Icons.rate_review_outlined),
             label: const Text('ส่งฟีดแบ็ค'),
+          ),
+          const SizedBox(height: 12),
+          OutlinedButton.icon(
+            onPressed: _busy ? null : _openDonate,
+            icon: const Icon(Icons.volunteer_activism_outlined),
+            label: const Text('สนับสนุนผู้พัฒนา'),
           ),
           if (_busy) ...[
             const SizedBox(height: 24),

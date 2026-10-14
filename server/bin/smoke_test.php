@@ -516,7 +516,7 @@ try {
         'message'     => 'กราฟค่าน้ำมันหายหลังลบรายการ' . $mark,
         'rating'      => 4,
         'contact'     => 'smoketest@example.invalid',
-        'app_version' => '1.0.3+4',
+        'app_version' => '1.1.0+5',
         'platform'    => 'android',
         'device'      => 'Android 14',
         // ไคลเอนต์แอบส่ง source มาเองต้องไม่มีผล เซิร์ฟเวอร์กำหนดเป็น app เสมอ
@@ -537,7 +537,7 @@ try {
             && (int) $row['user_id'] === $first['user_id']
             && $row['kind'] === 'bug'
             && (int) $row['rating'] === 4
-            && $row['app_version'] === '1.0.3+4'
+            && $row['app_version'] === '1.1.0+5'
             && $row['status'] === 'new',
         $row === false ? 'ไม่มีแถว' : json_encode($row, JSON_UNESCAPED_UNICODE)
     );

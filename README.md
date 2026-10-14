@@ -26,10 +26,7 @@
 ```bash
 flutter pub get
 flutter test
-flutter run \
-  --dart-define=CARCARE_API=https://carcare.example.com \
-  --dart-define=GOOGLE_SERVER_CLIENT_ID=your-web-client-id.apps.googleusercontent.com \
-  --dart-define=APP_VERSION=1.0.3+4
+flutter run --dart-define=CARCARE_API=https://carcare.example.com --dart-define=GOOGLE_SERVER_CLIENT_ID=your-web-client-id.apps.googleusercontent.com --dart-define=APP_VERSION=1.1.0+5
 ```
 
 ถ้าไม่ระบุ `CARCARE_API` แอพจะใช้ค่า placeholder `https://carcare.example.com` ซึ่งเหมาะสำหรับตัวอย่าง แต่ยังใช้งานซิงก์จริงไม่ได้
@@ -46,6 +43,16 @@ cp config.example.php config.php
 ```
 
 จากนั้นแก้ `config.php` ให้ตรงกับฐานข้อมูลและ Google client IDs ของระบบจริง ไฟล์นี้ถูก ignore และไม่ควร commit เพราะมีค่าลับของเซิร์ฟเวอร์
+
+## ตั้งค่า Donate บน Google Play
+
+แอพมีหน้าสนับสนุนผู้พัฒนาผ่าน Google Play Billing โดยใช้ one-time products แบบ consumable:
+
+- `carcare_support_small`
+- `carcare_support_medium`
+- `carcare_support_large`
+
+ต้องสร้าง product IDs เหล่านี้ใน Play Console ก่อน build/release จริง และไม่ควรใส่ลิงก์ชำระเงินภายนอกในแอพเพื่อเลี่ยงปัญหา Play Payments policy
 
 ## หมายเหตุสำหรับ public repository
 
