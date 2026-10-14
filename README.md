@@ -29,7 +29,7 @@ flutter test
 flutter run \
   --dart-define=CARCARE_API=https://carcare.example.com \
   --dart-define=GOOGLE_SERVER_CLIENT_ID=your-web-client-id.apps.googleusercontent.com \
-  --dart-define=APP_VERSION=1.0.1+2
+  --dart-define=APP_VERSION=1.0.3+4
 ```
 
 ถ้าไม่ระบุ `CARCARE_API` แอพจะใช้ค่า placeholder `https://carcare.example.com` ซึ่งเหมาะสำหรับตัวอย่าง แต่ยังใช้งานซิงก์จริงไม่ได้

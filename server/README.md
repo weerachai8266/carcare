@@ -96,7 +96,7 @@ Google `id_token` เพราะต้องมีโทเคนจริง�
 flutter run \
   --dart-define=CARCARE_API=https://carcare.example.com \
   --dart-define=GOOGLE_SERVER_CLIENT_ID=xxxxxxxx.apps.googleusercontent.com \
-  --dart-define=APP_VERSION=1.0.1+2
+  --dart-define=APP_VERSION=1.0.3+4
 ```
 
 (`APP_VERSION` ไม่บังคับ — ใช้แนบไปกับฟีดแบ็คเพื่อให้รู้ว่าบั๊กมาจากบิลด์ไหน

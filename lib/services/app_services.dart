@@ -25,14 +25,16 @@ class AppServices {
 
   static const appVersion = String.fromEnvironment(
     'APP_VERSION',
-    defaultValue: '1.0.1+2',
+    defaultValue: '1.0.3+4',
   );
 
   /// web client id จาก Google Cloud Console
   ///
   /// จำเป็นบน Android — ไม่มีค่านี้ GoogleSignIn จะไม่คืน id_token ให้เลย
   /// ตั้งตอน build ด้วย `--dart-define=GOOGLE_SERVER_CLIENT_ID=xxx.apps.googleusercontent.com`
-  static const googleServerClientId = String.fromEnvironment('GOOGLE_SERVER_CLIENT_ID');
+  static const googleServerClientId = String.fromEnvironment(
+    'GOOGLE_SERVER_CLIENT_ID',
+  );
 
   late final ApiClient api = ApiClient(baseUrl: apiBaseUrl);
   late final AuthService auth = AuthService(

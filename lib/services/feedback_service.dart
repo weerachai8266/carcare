@@ -29,13 +29,13 @@ class FeedbackService {
   static const messageMax = 4000;
 
   /// เวอร์ชันแอพที่แนบไปกับฟีดแบ็ค ตั้งตอน build ด้วย
-  /// `--dart-define=APP_VERSION=1.0.1+2` ให้ตรงกับ `version` ใน pubspec.yaml
+  /// `--dart-define=APP_VERSION=1.0.3+4` ให้ตรงกับ `version` ใน pubspec.yaml
   ///
   /// ใช้ dart-define แบบเดียวกับ CARCARE_API แทนการเพิ่ม package อ่าน pubspec
   /// ตอนรัน — ค่า 'dev' จึงหมายถึงบิลด์ที่ไม่ได้ระบุเวอร์ชันมา (เครื่องนักพัฒนา)
   static const appVersion = String.fromEnvironment(
     'APP_VERSION',
-    defaultValue: '1.0.1+2',
+    defaultValue: '1.0.3+4',
   );
 
   final ApiClient api;

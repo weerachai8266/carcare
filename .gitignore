@@ -48,6 +48,10 @@ app.*.map.json
 /android/app/.cxx/
 /android/.gradle/
 /android/local.properties
+/android/key.properties
+/android/app/upload-keystore.jks
+*.jks
+*.keystore
 
 # iOS / CocoaPods local artifacts
 /ios/Pods/
