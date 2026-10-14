@@ -1,0 +1,15 @@
+# ส่งทุกอย่างใต้ /api/ ไปที่ตัวจัดเส้นทางเดียว โดยเก็บส่วนที่เหลือไว้ใน PATH_INFO
+# (ถ้าโฮสต์ปิด .htaccess ให้เรียก /api/index.php/sync ตรง ๆ ได้เหมือนกัน — Http::path() รองรับทั้งสองแบบ)
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^api/(.*)$ api/index.php/$1 [QSA,L]
+
+# header Authorization ไม่ถูกส่งต่อให้ PHP เองใน mod_php/CGI บางค่าคอนฟิก
+RewriteCond %{HTTP:Authorization} .
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+# ปิดไม่ให้เข้าถึงไฟล์ที่ไม่ควรเปิดผ่านเว็บ เผื่อกรณีตั้ง document root ผิดชั้น
+<FilesMatch "\.(sql|md)$">
+    Require all denied
+</FilesMatch>

@@ -1,0 +1,392 @@
+/* สไตล์กลางของหน้าเว็บสถิติ — เรียบ ๆ อ่านง่ายบนมือถือ */
+
+:root {
+    --bg: #f6f7fb;
+    --surface: #ffffff;
+    --border: #e0e3ec;
+    --text: #1c1f27;
+    --muted: #666d7d;
+    --primary: #1565c0;
+    --danger: #c62828;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Noto Sans Thai", "Sarabun", system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+}
+
+.site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 20px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+.site-header .brand {
+    font-weight: 700;
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.site-header nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.site-header .user {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 24px 20px 48px;
+}
+
+h1 {
+    font-size: 24px;
+    margin: 0 0 8px;
+}
+
+.lead {
+    color: var(--muted);
+    margin-top: 0;
+}
+
+.breadcrumb {
+    margin: 0 0 12px;
+}
+
+a {
+    color: var(--primary);
+}
+
+/* ---------- ค้นหา ---------- */
+
+.search {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.search input[type="search"] {
+    flex: 1 1 260px;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font: inherit;
+}
+
+.search button {
+    padding: 10px 18px;
+    border: 0;
+    border-radius: 8px;
+    background: var(--primary);
+    color: #fff;
+    font: inherit;
+    cursor: pointer;
+}
+
+.search .clear {
+    font-size: 14px;
+}
+
+/* ---------- ตาราง ---------- */
+
+.data {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.data th,
+.data td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    vertical-align: top;
+}
+
+.data thead th {
+    background: #eef1f8;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.data tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.data .num {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.data .range {
+    color: var(--muted);
+}
+
+.empty-state {
+    padding: 40px 16px;
+    text-align: center;
+    color: var(--muted);
+}
+
+/* ---------- แบ่งหน้า ---------- */
+
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+    margin: 20px 0 8px;
+}
+
+.pagination a,
+.pagination span {
+    min-width: 38px;
+    padding: 6px 10px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    text-align: center;
+    text-decoration: none;
+}
+
+.pagination .current {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+    font-weight: 700;
+}
+
+.pagination .disabled {
+    color: #aab0bd;
+    background: #f0f1f5;
+}
+
+.pagination .ellipsis {
+    border: 0;
+    background: none;
+    min-width: auto;
+}
+
+.pagination-summary {
+    color: var(--muted);
+    font-size: 14px;
+    margin: 0;
+}
+
+/* ---------- ล็อกอิน ---------- */
+
+.login-box {
+    max-width: 420px;
+    margin: 48px auto;
+    padding: 32px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    text-align: center;
+}
+
+.login-box .g_id_signin {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.error {
+    color: var(--danger);
+}
+
+/* ---------- ฟอร์ม (ฟีดแบ็ค) ---------- */
+
+.form {
+    max-width: 640px;
+    margin: 20px 0;
+    padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.form .field {
+    margin: 0 0 20px;
+    /* fieldset มีเส้นขอบ/ระยะขอบมาเองจากเบราว์เซอร์ ต้องล้างให้เท่ากับ div */
+    border: 0;
+    padding: 0;
+}
+
+.form legend,
+.form label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    padding: 0;
+}
+
+.form textarea,
+.form input[type="text"],
+.form select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    /* ไม่ inherit ฟอนต์ ข้อความไทยในกล่องจะเป็นฟอนต์ monospace ของเบราว์เซอร์ */
+    font: inherit;
+    color: inherit;
+    background: var(--surface);
+}
+
+.form textarea {
+    resize: vertical;
+    min-height: 140px;
+}
+
+.form .choices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.form .choice {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 8px 14px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+/* :has() ให้ขอบของตัวที่เลือกอยู่เข้มขึ้นโดยไม่ต้องใช้ JS
+   เบราว์เซอร์ที่ไม่รู้จักจะข้ามกฎนี้ไป เหลือแค่วงกลมของ radio ซึ่งยังใช้งานได้ปกติ */
+.form .choice:has(input:checked) {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.form button[type="submit"] {
+    padding: 12px 24px;
+    border: 0;
+    border-radius: 8px;
+    background: var(--primary);
+    color: #fff;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* ใช้ทั้งในฟอร์มและใต้ตารางบนแดชบอร์ด */
+.hint {
+    margin: 8px 0 0;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.notice {
+    max-width: 640px;
+    margin: 20px 0;
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface);
+}
+
+.notice.success {
+    border-color: #2e7d32;
+    color: #1b5e20;
+}
+
+.notice.error {
+    border-color: var(--danger);
+    color: var(--danger);
+}
+
+.notice.warn {
+    border-color: #ef6c00;
+    background: #fff8ef;
+    color: #8a4b00;
+}
+
+/* ---------- แดชบอร์ด ---------- */
+
+h2 {
+    font-size: 19px;
+    margin: 32px 0 12px;
+}
+
+.tiles {
+    display: grid;
+    /* auto-fit + minmax ให้จำนวนคอลัมน์ยุบเองตามความกว้าง ไม่ต้องมี media query
+       แยกสำหรับมือถือ/แท็บเล็ต และไม่ต้องแก้เมื่อเพิ่มไทล์ใหม่ */
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.tile {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.tile-label {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.tile-value {
+    font-size: 26px;
+    line-height: 1.2;
+    /* ตัวเลขเรียงกันเป็นแถวจะดูไม่เท่ากันถ้าความกว้างตัวเลขไม่คงที่ */
+    font-variant-numeric: tabular-nums;
+}
+
+.tile-link {
+    font-size: 13px;
+}
+
+/* ---------- ท้ายหน้า ---------- */
+
+.site-footer {
+    border-top: 1px solid var(--border);
+    padding: 20px;
+    color: var(--muted);
+    font-size: 14px;
+    text-align: center;
+}
+
+@media (max-width: 640px) {
+    .data thead {
+        font-size: 13px;
+    }
+
+    .data th,
+    .data td {
+        padding: 8px;
+    }
+}
